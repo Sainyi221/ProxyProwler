@@ -1,4 +1,4 @@
-name: V2Ray Auto Config
+Name: V2Ray Auto Config
 
 on:
   workflow_dispatch:
@@ -114,13 +114,12 @@ jobs:
               print('Error: BOT_TOKEN or CHAT_ID missing!')
               exit(1)
 
-          # ၁။ လက်ရှိ update လုပ်သည့် အချိန်ကို ဦးစွာ Message ပို့ခြင်း
           current_time = datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC')
-          message_text = f'🕒 **Latest Proxy Update:**\nGenerated at: {current_time}'
+          message_text = '🤖 **V2Ray & Proxy Auto Update** 🤖\n━━━━━━━━━━━━━━━━━━━\n🕒 **Time:** ' + current_time + '\n**Telegram Bot:**@Myanmartharpu_bot\n💡 **Note:** အသစ်ထွက်ရှိထားသော Proxy များကို အလိုအလျောက် စစ်ဆေးပြီး တင်ပေးထားပါသည်။\n━━━━━━━━━━━━━━━━━━━'
+
           msg_url = f'https://api.telegram.org/bot{bot_token}/sendMessage'
           requests.post(msg_url, data={'chat_id': chat_id, 'text': message_text, 'parse_mode': 'Markdown'})
 
-          # ၂။ proxy_output ဖိုင်တွဲထဲက ဖိုင်များကို ဆက်တိုက် ပို့ခြင်း
           output_dir = 'proxy_output'
           if os.path.exists(output_dir):
               for file_name in os.listdir(output_dir):
