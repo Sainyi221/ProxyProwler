@@ -115,7 +115,7 @@ jobs:
               exit(1)
 
           current_time = datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC')
-          message_text = '🤖 **V2Ray & Proxy Auto Update** 🤖\n━━━━━━━━━━━━━━━━━━━\n🕒 **Time:** ' + current_time + '\n**Telegram Bot:**@Myanmartharpu_bot\n💡 **Note:** အသစ်ထွက်ရှိထားသော Proxy များကို အလိုအလျောက် စစ်ဆေးပြီး တင်ပေးထားပါသည်။\n━━━━━━━━━━━━━━━━━━━'
+          message_text = '🤖 **V2Ray & Proxy Auto Update** 🤖\n━━━━━━━━━━━━━━━━━━━\n🕒Time:' + current_time + '\nTelegram Bot:@Myanmartharpu_bot\n💡Note: အသစ်ထွက်ရှိထားသော Proxy များကို အလိုအလျောက် စစ်ဆေးပြီး တင်ပေးထားပါသည်။\n━━━━━━━━━━━━━━━━━━━'
 
           msg_url = f'https://api.telegram.org/bot{bot_token}/sendMessage'
           requests.post(msg_url, data={'chat_id': chat_id, 'text': message_text, 'parse_mode': 'Markdown'})
