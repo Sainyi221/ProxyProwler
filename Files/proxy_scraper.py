@@ -66,7 +66,7 @@ def measure_proxy_ping(server, port, timeout=3, tries=1):
         return average_ping
     return None
 
-def fetch_proxies_from_url(url, proxy_type, max_proxies=50):
+def fetch_proxies_from_url(url, proxy_type, max_proxies=100000):
     proxies = []
     headers = {'User-Agent': get_random_user_agent()}
     pattern = r'^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{1,5}$'
