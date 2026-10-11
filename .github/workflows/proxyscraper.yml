@@ -1,4 +1,4 @@
-Name: V2Ray Auto Config
+name: V2Ray Auto Config
 
 on:
   workflow_dispatch:
