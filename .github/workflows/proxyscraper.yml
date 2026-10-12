@@ -3,7 +3,7 @@ name: V2Ray Auto Config
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 */9 * * *'
+    - cron: '0 */2 * * *'
 
 permissions:
   contents: write
@@ -115,10 +115,12 @@ jobs:
               exit(1)
 
           current_time = datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC')
-          message_text = '🤖 **V2Ray & Proxy Auto Update** 🤖\n━━━━━━━━━━━━━━━━━━━\n🕒Time:' + current_time + '\nTelegram Bot:@Myanmartharpu_bot\n💡Note: အသစ်ထွက်ရှိထားသော Proxy များကို အလိုအလျောက် စစ်ဆေးပြီး တင်ပေးထားပါသည်။\n━━━━━━━━━━━━━━━━━━━'
+          message_text = '🤖 V2Ray & Proxy Auto Update 🤖\n━━━━━━━━━━━━━━━━━━━\n🕒 Time: ' + current_time + '\n📌 Telegram Bot: @Myanmartharpu_bot\n💡 Note: အသစ်ထွက်ရှိထားသော Proxy များကို အလိုအလျောက် စစ်ဆေးပြီး တင်ပေးထားပါသည်။\n━━━━━━━━━━━━━━━━━━━'
 
           msg_url = f'https://api.telegram.org/bot{bot_token}/sendMessage'
-          requests.post(msg_url, data={'chat_id': chat_id, 'text': message_text, 'parse_mode': 'Markdown'})
+          response = requests.post(msg_url, data={'chat_id': chat_id, 'text': message_text})
+          print(f'Send Text Status: {response.status_code}')
+          print(f'Send Text Response: {response.text}')
 
           output_dir = 'proxy_output'
           if os.path.exists(output_dir):
@@ -127,8 +129,8 @@ jobs:
                   if os.path.isfile(file_path):
                       with open(file_path, 'rb') as f:
                           url = f'https://api.telegram.org/bot{bot_token}/sendDocument'
-                          response = requests.post(url, data={'chat_id': chat_id}, files={'document': f})
-                          print(f'Sending {file_name}: {response.status_code}')
+                          doc_response = requests.post(url, data={'chat_id': chat_id}, files={'document': f})
+                          print(f'Sending {file_name}: {doc_response.status_code}')
           else:
               print('proxy_output folder not found!')
           "
