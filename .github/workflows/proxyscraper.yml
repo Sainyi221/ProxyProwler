@@ -3,7 +3,8 @@ name: V2Ray Auto Config
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 */2 * * *'
+        - cron: '*/30 * * * *'
+
 
 permissions:
   contents: write
